@@ -6,7 +6,8 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class SuperHeroApi
 {
-    public function selectTwentyHeroes($number)
+    // used to retrieve API data 
+    public function selectHero($number)
     {
         $client = HttpClient::create();
         $response = $client->request(
@@ -26,4 +27,32 @@ class SuperHeroApi
             return $content;
         }
     }
+
+    //Used to save API data in DB in a controller
+    /**
+     * @Route("/", name="home")
+     */
+    // public function allHeroes(EntityManagerInterface $em)
+    // {
+    //     $APIHero = new SuperHeroApi();
+        
+    //     for($i=700;$i<=731;$i++)
+    //     { 
+    //         $hero = new Hero;
+    //         $heroes = $APIHero->selectHero($i);
+    //         $hero->setName($heroes['name']);
+    //         $hero->setPowerstats($heroes['powerstats']);
+    //         $hero->setAlignment($heroes['biography']['alignment']);
+    //         $hero->setImage($heroes['image']['url']);
+    //         $hero->setBase($heroes['work']['base']);
+    //         $hero->setGroupAffiliation($heroes['connections']['group-affiliation']);
+
+    //         $em->persist($hero);
+    //     }
+        
+    //     $em->flush();
+
+
+    //     return $this->render('index.html.twig');
+    // }
 }

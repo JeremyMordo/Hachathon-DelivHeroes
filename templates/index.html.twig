@@ -3,6 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-{{dump(heroes)}}
-    {{ parent ()}}
+    {% for hero in heroes %}
+        {# {{hero.name}} #}
+        <img src="{{hero.image}}">
+        {# {% for key, powerstats in hero.powerstats %}
+            <li> {{key}} {{powerstats}}</li>
+        {# {% endfor %} #} #}
+    {% endfor %} 
 {% endblock %}

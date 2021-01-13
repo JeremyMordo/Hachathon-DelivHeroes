@@ -3,28 +3,35 @@
 namespace App\Controller;
 
 use App\Service\SuperHeroApi;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Hero;
 
 class HomeController extends AbstractController
 {
+
     /**
      * @Route("/", name="home")
      */
-    public function allHeroes()
+    public function index()
     {
-        $allHeroes = new SuperHeroApi();
-        for($i=0;$i<10;$i++) 
-        {
-            $number=rand(0, 731);
-            $numberAlreadyPassed[]= $number;
-            if(!in_array($number, $numberAlreadyPassed)) {
-                $heroes[]= $allHeroes->selectTwentyHeroes($number);
-            } else {
-                $i--;
-            }
-        }
+        $allHeroes = $this->getDoctrine()
+            ->getRepository(Hero::class)
+            ->findAll();
 
-        return $this->render('index.html.twig', ['heroes' => $heroes]);
+        // Random twelwe images    
+        $random_keys=array_rand($allHeroes,12);
+
+        for($i=0;$i<=11;$i++)
+        {
+        $heroes []= $allHeroes[$random_keys[$i]];
+        }
+        
+        return $this->render('index.html.twig', [
+            'heroes'=> $heroes
+        ]);
+
     }
 }
