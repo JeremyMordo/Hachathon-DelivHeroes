@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Service\SuperHeroApi;
+use App\Repository\HeroesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -11,19 +14,9 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function allHeroes()
+    public function index(HeroesRepository $heroesRepository): Response
     {
-        $allHeroes = new SuperHeroApi();
-        for($i=0;$i<10;$i++) 
-        {
-            $number=rand(0, 731);
-            $numberAlreadyPassed[]= $number;
-            if(!in_array($number, $numberAlreadyPassed)) {
-                $heroes[]= $allHeroes->selectTwentyHeroes($number);
-            } else {
-                $i--;
-            }
-        }
+        $heroes = $heroesRepository->findAll();
 
         return $this->render('index.html.twig', ['heroes' => $heroes]);
     }
