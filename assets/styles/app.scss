@@ -66,7 +66,6 @@ body {
 
 .poster-modal {
     max-width: 400px;
-    filter: grayscale(0%);
 }
 
 .profile-card-2:hover .name {
@@ -91,11 +90,15 @@ body {
 }
 
 .modal-content {
-    border-radius: 1rem
+    border-radius: 1rem;
+    font-size: 30px;
 }
 
 .modal-content:hover {
-    box-shadow: 2px 2px 2px black
+    box-shadow: 2px 2px 2px black;
+        img {
+            filter: none;
+    }
 }
 
 .fa {
