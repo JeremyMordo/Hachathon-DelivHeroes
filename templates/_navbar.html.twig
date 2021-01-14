@@ -1,6 +1,6 @@
 {% block header %}
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="/">DelivHeroes</a>
+        <a class="navbar-brand" href="/"><img src="{{ asset('build/images/logo.png') }}">DelivHeroes</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -9,8 +9,11 @@
                     {% if app.user %}
                         <a class="nav-link" href="{{ path('logout') }}"> Se déconnecter</a>
                     {% else %}
-                        <button type="button" class="button" data-toggle="modal" data-target="#connection">
-                            Connexion
+                        <button type="button" class="button hirebtn" data-toggle="modal" data-target="#connection">
+                            Hire your Hero
+                        </button>
+                        <button type="button" class="button showbtn" href="">
+                            Our Heroes
                         </button>
                         <div class="modal fade" id="connection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered d-flex" style="max-width:20%;" role="document">
