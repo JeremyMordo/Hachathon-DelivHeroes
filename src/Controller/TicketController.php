@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ticket;
 use App\Entity\Category;
+use App\Entity\Hero;
 use App\Form\TicketType;
 use App\Service\Compare;
 use App\Service\Average;
@@ -41,7 +42,7 @@ class TicketController extends AbstractController
             $entityManager->persist($ticket);
             $entityManager->flush();
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('ticket_result', ['data' => $data]);
         }
 
         
@@ -105,4 +106,18 @@ class TicketController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/ticket/{categoryId}/{heroId}", name="add_ticket", methods={"GET"})
+     * @ParamConverter("hero", class="App\Entity\Hero", options={"mapping":{"heroId" : "id"}})
+     * @ParamConverter("category", class="App\Entity\Category", options={"mapping":{"categoryId" : "id"}})
+     */
+    public function addTicket(Ticket $ticket, Category $category, Hero $hero, AuthenticationUtils $authenticationUtils)
+    {
+        $ticket = new Ticket();
+        $ticket->setCategory($category->getId());
+        $ticket->setResume();
+        $ticket->setLocalisation();
+        $ticket->setStatus(1);
+        $ticket->setHero($hero->getId());
+    }
 }

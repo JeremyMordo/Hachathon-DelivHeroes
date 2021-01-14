@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210113152344 extends AbstractMigration
+final class Version20210114195434 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,12 +20,16 @@ final class Version20210113152344 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE hero (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, powerstats LONGTEXT NOT NULL COMMENT \'(DC2Type:array)\', alignment VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, base VARCHAR(255) NOT NULL, group_affiliation VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE ticket ADD hero_id INT NOT NULL');
+        $this->addSql('ALTER TABLE ticket ADD CONSTRAINT FK_97A0ADA345B0BCD FOREIGN KEY (hero_id) REFERENCES hero (id)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_97A0ADA345B0BCD ON ticket (hero_id)');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE hero');
+        $this->addSql('ALTER TABLE ticket DROP FOREIGN KEY FK_97A0ADA345B0BCD');
+        $this->addSql('DROP INDEX UNIQ_97A0ADA345B0BCD ON ticket');
+        $this->addSql('ALTER TABLE ticket DROP hero_id');
     }
 }

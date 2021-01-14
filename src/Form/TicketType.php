@@ -30,7 +30,6 @@ class TicketType extends AbstractType
                 'choice_label' => 'name',
                 'group_by' => 'type',
                 'placeholder' => 'Choisir une catégorie'
-
             ]);
     }
 
