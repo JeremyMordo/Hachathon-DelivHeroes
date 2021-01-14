@@ -82,9 +82,10 @@ window.onload = function(){
 
     {% for hero in heroes %}
         {# {{hero.name}} #}
-        <img src="{{hero.image}}">
+        <img src="{{hero.image}}" alt="{{ hero.name }}">
         {# {% for key, powerstats in hero.powerstats %}
-            <li> {{key}} {{powerstats}}</li>
+
+            <li> {{key}} {{powerstats}}</li>#}
         {# {% endfor %} #}
     {% endfor %} 
    
