@@ -23,16 +23,19 @@
                                             <div class="stats col-6">
                                                 <h4>Statistiques</h4>
                                                     {% for key, powerstats in hero.powerstats %}
-                                                            <div>{{key}} {{powerstats}}</div>
-                                                        {% endfor %}
+                                                        <div>{{key}} {{powerstats}}</div>
+                                                    {% endfor %}
                                             </div>
                                             <div class="base-assoc col-6">
                                                 <h5>Base d'opération</h5>
-                                                    <div>{{ hero.base }}</div>
+                                                <div>{{ hero.base }}</div>
                                                     <h5>Affiliation</h5>
-                                                    <div>{{ hero.groupAffiliation }}</div>
+                                                <div>{{ hero.groupAffiliation }}</div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row d-flex justify-content-center">
+                                        <a class="btn btn-danger" href="{{path('add_ticket', {'categoryId' : category.id, 'heroId' : hero.id}) }}">CHOISIS MOI !</a>
                                     </div>
                                 </div>
                             </div>
