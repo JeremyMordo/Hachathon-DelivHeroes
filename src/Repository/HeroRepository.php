@@ -19,6 +19,17 @@ class HeroRepository extends ServiceEntityRepository
         parent::__construct($registry, Hero::class);
     }
 
+    public function findLikeName(string $name): ?array
+    {
+        $queryBuilder = $this->createQueryBuilder('h')
+            ->where('h.name LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->orderBy('h.name', 'ASC')
+            ->getQuery();
+
+        return $queryBuilder->getResult();
+    }
+
     // /**
     //  * @return Hero[] Returns an array of Hero objects
     //  */
