@@ -1,0 +1,150 @@
+body {
+    background-color: pink;
+}
+
+/** Heroes list **/
+
+.lotcards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.profile-card-2 {
+    max-width: 300px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 1em;
+}
+
+.profile-card-2 img {
+    transition: all linear 0.25s;
+}
+
+.profile-card-2 .name {
+    position: absolute;
+    left: 30px;
+    bottom: 120px;
+    font-size: 30px;
+    color: red;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    transition: all linear 0.25s;
+}
+
+.profile-card-2 .profile-icons {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    color: #FFF;
+    transition: all linear 0.25s;
+}
+
+.profile-card-2 .clickhere {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: red;
+    font-size: 13px;
+    transition: all linear 0.25s;
+}
+
+.poster{
+    max-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
+.profile-card-2:hover img {
+    filter: grayscale(100%);
+}
+
+.profile-card-2:hover .name {
+    bottom: 120px;
+    font-size: 50px;
+}
+
+.profile-card-2:hover .clickhere{
+    bottom: 30px;
+    font-size: 30px;
+}
+
+
+.button
+	border solid 3px #000 
+	display inline-block
+	padding 5px 15px
+	cursor pointer
+	transition .25s ease-in-out
+	&:hover
+		background-color #999
+		color #fff
+		transform translate3d(-5px,-5px,0)
+		box-shadow 5px 5px rgba(0,0,0,.75)
+
+.modal_overlay
+	position fixed
+	top 0
+	left 0
+	width 100%
+	height 100%
+	z-index 1000
+	background-color rgba(0,0,0,0)
+	opacity 0
+	pointer-events none
+	transition .5s ease-in-out
+	will-change opacity
+	&.active
+		opacity 1
+		pointer-events auto
+
+.modal
+	position fixed
+	top 20%
+	left 50%
+	transform translate3d(-50%,50px,0)
+	z-index 1001
+	background-color #ccc;
+	padding 35px
+	width 100%
+	max-width 500px
+	opacity 0
+	pointer-events none
+	transition .5s ease-in-out
+	transition-delay .0s
+	will-change transform, opacity
+	&.active
+		opacity 1
+		pointer-events auto
+		transform translate3d(-50%,0px,0)
+		transition-delay .25s
+	>.modal_close.main
+		position absolute
+		height 50px
+		width 50px
+		display flex
+		justify-content center
+		align-items center
+		top -25px
+		right -25px
+		font-size 20px
+		border-radius 100%
+		box-sizing border-box
+		background-color #fff
+		color #000
+		border solid 3px #fff
+		cursor pointer
+		transition .25s ease-in-out
+		&:hover
+			border solid 3px #000
+		
+section
+	display flex
+	justify-content center
+	align-items center
+	height 300px
