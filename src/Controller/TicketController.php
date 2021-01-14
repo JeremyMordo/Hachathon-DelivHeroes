@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class TicketController extends AbstractController
 {
@@ -17,8 +18,13 @@ class TicketController extends AbstractController
     /**
      * @Route("/ticket", name="ticket")
      */
-    public function ticket(Request $request, EntityManagerInterface $em)
+    public function ticket(Request $request, EntityManagerInterface $em, AuthenticationUtils $authenticationUtils)
     {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
         $ticket = new Ticket();
         $form = $this->createForm(TicketType::class, $ticket);
 
@@ -38,6 +44,8 @@ class TicketController extends AbstractController
         
         return $this->render('ticket.html.twig', [
             'form' => $form->createView(),
+            'error' => $error,
+            'last_username' => $lastUsername,
         ]);
 
     }

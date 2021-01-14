@@ -27,8 +27,10 @@ class TicketType extends AbstractType
             ->add('localisation', TextType::class)
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'query_builder' => $this->categoryRepository->distinctType(),
-                'choice_label' => 'type',
+                'choice_label' => 'name',
+                'group_by' => 'type',
+                'placeholder' => 'Choisir une catégorie'
+
             ]);
     }
 
