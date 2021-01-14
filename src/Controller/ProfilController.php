@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Form\RegistrationFormType;
 
 class ProfilController extends AbstractController
 {
@@ -30,11 +31,17 @@ class ProfilController extends AbstractController
     public function register(Request $request,
                              UserPasswordEncoderInterface $passwordEncoder,
                              GuardAuthenticatorHandler $guardHandler,
-                             LoginFormAuthenticator $authenticator): Response
+                             LoginFormAuthenticator $authenticator,
+                                AuthenticationUtils $authenticationUtils): Response
 {
     $user = new User();
     $form = $this->createForm(RegistrationFormType::class, $user);
     $form->handleRequest($request);
+
+    // get the login error if there is one
+    $error = $authenticationUtils->getLastAuthenticationError();
+    // last username entered by the user
+    $lastUsername = $authenticationUtils->getLastUsername();
 
     if ($form->isSubmitted() && $form->isValid()) {
         // encode the plain password
@@ -58,20 +65,29 @@ class ProfilController extends AbstractController
         );
     }
 
-    return $this->render('security/register.html.twig', [
+    return $this->render('register.html.twig', [
         'registrationForm' => $form->createView(),
+        'last_username' => $lastUsername,
+        'error' => $error,
     ]);
 }
 
     /**
      * @Route("/profil", name="profil")
      */
-    public function profil(): Response
+    public function profil(AuthenticationUtils $authenticationUtils): Response
 {
     $user = $this->getUser();
+    // get the login error if there is one
+    $error = $authenticationUtils->getLastAuthenticationError();
+    // last username entered by the user
+    $lastUsername = $authenticationUtils->getLastUsername();
 
     return $this->render('profil.html.twig', [
         'user' => $user,
+        'last_username' => $lastUsername,
+        'error' => $error,
+
     ]);
 }
 }

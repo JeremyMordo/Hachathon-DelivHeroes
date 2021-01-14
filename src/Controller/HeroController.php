@@ -36,7 +36,7 @@ class HeroController extends AbstractController
             $heroes = $heroRepository->findAll();
         }
         if (!$heroes) {
-            $this->addFlash('danger', 'Pas d\'entreprises portant ce nom');
+            $this->addFlash('danger', 'Pas de hero portant ce nom');
         }
 
         return $this->render('heroes.html.twig', [
