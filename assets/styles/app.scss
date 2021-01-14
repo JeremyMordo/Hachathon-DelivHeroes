@@ -1,3 +1,48 @@
 body {
     background-color: lightgray;
 }
+
+.navbar {
+
+background-color: #323c81;
+box-shadow: 0px 10px 5px #0f1f3d;
+z-index: 5;
+
+
+}
+
+.navbar-brand{
+
+    font-family: Viga;
+    font-size: 30px;
+    color: white;
+    
+}
+
+
+.button{
+
+font-family: Viga;
+font-size: 25px;
+color: lightblue;
+border: none;
+background-color: #323c81;
+
+}
+
+.punchline{
+
+z-index: 1;
+height: 500px;
+background: rgb(198,58,79);
+background: linear-gradient(90deg, rgba(198,58,79,1) 0%, rgba(255,0,142,1) 100%);
+clip-path: polygon(0 0, 50% 0, 41% 70%, 0 100%);
+font-family: Bangers;
+font-size: 50pt;
+color: white;
+overflow-wrap: wrap;
+text-align: left;
+align-content: center;
+padding-top: 30px;
+
+}
