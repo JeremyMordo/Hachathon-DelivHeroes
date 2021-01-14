@@ -30,6 +30,7 @@ class HomeController extends AbstractController
             ->findAll();
 
         // Random twelve images    
+
         $random_keys=array_rand($allHeroes,12);
 
         for($i=0;$i<=11;$i++)
