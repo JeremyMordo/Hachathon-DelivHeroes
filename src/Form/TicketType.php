@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class TicketType extends AbstractType
 {
@@ -32,9 +33,23 @@ class TicketType extends AbstractType
                 ])
             ->add('localisation', TextType::class, [
                 'label' => 'Le lieu de l\'intervention'])
-            // ->add('time', ChoiceType::class, [
-            //     'choices' => [
-            //         'now' => new \DateTime('now')]])
+            ->add('interventionSchedule', ChoiceType::class, [
+                'label' => 'Date d\'intervention',
+                'placeholder' => 'Choisir une horaire',
+                'choices' => [
+                    'Tout de suite !' => new \DateTime('now'),
+                    'Demain' => new \DateTime('+1 day'),
+                    'La semaine prochaine' => new \DateTime('+1 week'),
+                    'Dans un mois' => new \DateTime('+1 month'),
+                ],
+                'group_by' => function($choice, $key, $value) {
+                    if ($choice <= new \DateTime('+3 days')) {
+                        return 'Rapidement';
+                    }
+            
+                    return 'Je ne suis pas pressé';
+                },
+            ])
             ->add('resume', TextareaType::class,[
                 'label' => 'Commentaire à destination du héro']);
     }
