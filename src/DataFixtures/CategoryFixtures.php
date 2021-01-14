@@ -16,7 +16,7 @@ class CategoryFixtures extends Fixture
                 'description' => 'C\'est casse-couille, mais avec un bon chirurgien et une bonne prothèse ça passe ! Par contre faut se grouiller là.',
                 'complexity' => '3',
                 'statRequired' => [
-                        'intelligence' => '100',
+                        'intelligence' => '50',
                         'strength' => '10',
                         'speed' => '100',
                         'durability' => '10',
@@ -37,7 +37,6 @@ class CategoryFixtures extends Fixture
                         'combat' => '100',
                     ],
                 ],
-
             'Chat coincé dans un arbre' => [
                 'type' => 'Sauvetage',
                 'description' => 'Votre chat s\'est encore fourré tout en haut de l\'arbre du jardin et vous ne supportez plus ses miaulements de damné ? 
@@ -47,8 +46,8 @@ class CategoryFixtures extends Fixture
                         'intelligence' => '10',
                         'strength' => '10',
                         'speed' => '10',
-                        'durability' => '100',
-                        'power' => '100',
+                        'durability' => '70',
+                        'power' => '80',
                         'combat' => '0',
                     ],
                 ],
@@ -58,10 +57,10 @@ class CategoryFixtures extends Fixture
                 'complexity' => '2',
                 'statRequired' => [
                         'intelligence' => '50',
-                        'strength' => '100',
-                        'speed' => '100',
+                        'strength' => '70',
+                        'speed' => '90',
                         'durability' => '0',
-                        'power' => '100',
+                        'power' => '80',
                         'combat' => '0',
                     ],
                 ],
