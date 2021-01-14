@@ -223,5 +223,21 @@ padding-top: 30px;
 
     }
 
+    //Ticket page
+
+    .form-ticket {
+        background: rgb(198,58,79);
+        font-size:2em;
+        z-index: 10;
+        height: 500px;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+        color: white;
+        text-align: left;
+        align-content: center;
+        padding: 30px 5em 25em 5em;
+        margin-top: 3em;
+        margin-bottom:2em;
+
+    }
 
 

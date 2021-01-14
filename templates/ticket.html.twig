@@ -3,8 +3,11 @@
 {% block title %}request{% endblock %}
 
 {% block body %}
-{{ form(form) }}
-    <button class="btn-primary" type="submit">
-        Demande d'intervention
-    </button>
+    <div class="container form-ticket">
+        {{ form(form) }}
+        <button class="btn-primary" type="submit">
+            Demande d'intervention
+        </button>
+    </div>
+
 {% endblock %}
