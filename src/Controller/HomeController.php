@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,10 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use App\Service\SuperHeroApi;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Hero;
-
 
 class HomeController extends AbstractController
 {
@@ -32,19 +29,19 @@ class HomeController extends AbstractController
             ->getRepository(Hero::class)
             ->findAll();
 
-        // Random twelwe images
+        // Random twelve images    
+
         $random_keys=array_rand($allHeroes,12);
 
         for($i=0;$i<=11;$i++)
         {
         $heroes []= $allHeroes[$random_keys[$i]];
         }
-      
-      return $this->render('index.html.twig', [
+        
+        return $this->render('index.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-             'heroes'=> $heroes
+            'heroes'=> $heroes
         ]);
     }       
-
 }

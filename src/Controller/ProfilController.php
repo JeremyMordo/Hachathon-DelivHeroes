@@ -75,13 +75,18 @@ class ProfilController extends AbstractController
     /**
      * @Route("/profil", name="profil")
      */
-    public function profil(): Response
+    public function profil(AuthenticationUtils $authenticationUtils): Response
 {
     $user = $this->getUser();
-
+    // get the login error if there is one
+    $error = $authenticationUtils->getLastAuthenticationError();
+    // last username entered by the user
+    $lastUsername = $authenticationUtils->getLastUsername();
 
     return $this->render('profil.html.twig', [
         'user' => $user,
+        'last_username' => $lastUsername,
+        'error' => $error,
 
     ]);
 }

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}La liste des Heros{% endblock %}
+{% block body %}
+    <div class="heroes-container">
+        <h1>Notre team au complet</h1>
+        <div class="form">
+            {{ form(form) }}
+        </div>
+        <div class="lotcards">
+            {% for hero in heroes %}
+                <div class="profile-card-2">
+                    <img src="{{ hero.image }}" class="poster align-center">
+                    <div class="name">{{ hero.name }}</div>
+                    <div class="clickhere">
+                        <p>Pour en savoir plus</br>
+                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Cliquez-ici</button>
+                        <div class="modal fade" id="hero{{ hero.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                                <div class="modal-heroes py-md-5 px-md-4 p-sm-3 p-4">
+                                    <h1> {{ hero.name }}</h1>
+                                    <div class="modal-desc row">
+                                        <div class="image-poster col-6">
+                                            <img src="{{ hero.image }}" class="poster-modal">
+                                        </div>
+                                        <div class="stats-base-assoc row col-6">
+                                            <div class="stats col-6">
+                                                <h4>Statistiques</h4>
+                                                    {% for key, powerstats in hero.powerstats %}
+                                                        <div>{{key}} {{powerstats}}</div>
+                                                    {% endfor %}
+                                            </div>
+                                            <div class="base-assoc col-6">
+                                                <h5>Base d'opération</h5>
+                                                    <div>{{ hero.base }}</div>
+                                                <h5>Affiliation</h5>
+                                                    <div>{{ hero.groupAffiliation }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
