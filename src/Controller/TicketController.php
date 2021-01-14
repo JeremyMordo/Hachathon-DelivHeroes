@@ -5,20 +5,23 @@ namespace App\Controller;
 use App\Entity\Ticket;
 use App\Entity\Category;
 use App\Form\TicketType;
+use App\Service\Compare;
+use App\Service\Average;
+use App\Repository\HeroRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class TicketController extends AbstractController
 {
-
     /**
      * @Route("/ticket", name="ticket")
      */
-    public function ticket(Request $request, EntityManagerInterface $em, AuthenticationUtils $authenticationUtils)
+    public function ticket(Request $request, AuthenticationUtils $authenticationUtils)
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -49,4 +52,57 @@ class TicketController extends AbstractController
         ]);
 
     }
+
+    /**
+     * @Route("/ticket/{id}", name="ticket_result", methods={"GET"})
+     * @ParamConverter("category", class="App\Entity\Category", options={"mapping":{"id" : "id"}})
+     */
+    public function ticketResult(Compare $compare, Average $average, Category $category, HeroRepository $heroRepository, AuthenticationUtils $authenticationUtils)
+    {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+    
+        $statRequired = $category->getStatRequired();
+
+        $heroes = $heroRepository->findAll();
+
+        foreach($heroes as $hero){
+            $statHero = $hero->getPowerstats();
+            $result = $compare->compare($statRequired, $statHero);
+
+            if ($result === true){
+                $allHeroes[] = $hero;
+            }
+        }
+        foreach ($allHeroes as $hero) {
+            $idHero = $hero->getId();
+            $moyenneHero = $average->average($hero->getPowerstats());
+            $goodHeroes[] = ['id' => $idHero, 'moyenne' => $moyenneHero];
+        }
+
+        $moyenne = array();
+        
+        foreach ($goodHeroes as $key => $row)
+        {
+            $moyenne[$key] = $row['moyenne'];
+            
+        }
+        array_multisort($moyenne, SORT_DESC, $goodHeroes);
+
+        foreach($goodHeroes as $key => $value){
+            $hero = $heroRepository->findOneBy(
+                ['id' => $value['id']]
+            );
+            $allGoodHeroes[]= $hero;
+        }
+
+        return $this->render('result.html.twig', [
+            'error' => $error,
+            'last_username' => $lastUsername,
+            'allgoodheroes' => $allGoodHeroes,
+        ]);
+    }
+
 }
