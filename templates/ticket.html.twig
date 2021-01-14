@@ -4,10 +4,10 @@
 
 {% block body %}
     <div class="container form-ticket">
-        {{ form(form) }}
-        <button class="btn-primary" type="submit">
-            Demande d'intervention
-        </button>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+            <input type='submit' class="btn-primary"  value="Réserve ton héro">
+        {{ form_end(form) }}
     </div>
-
 {% endblock %}

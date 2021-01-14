@@ -47,6 +47,11 @@ class Hero
      */
     private $groupAffiliation;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Ticket::class, mappedBy="hero", cascade={"persist", "remove"})
+     */
+    private $ticket;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +125,23 @@ class Hero
     public function setGroupAffiliation(string $groupAffiliation): self
     {
         $this->groupAffiliation = $groupAffiliation;
+
+        return $this;
+    }
+
+    public function getTicket(): ?Ticket
+    {
+        return $this->ticket;
+    }
+
+    public function setTicket(Ticket $ticket): self
+    {
+        // set the owning side of the relation if necessary
+        if ($ticket->getHero() !== $this) {
+            $ticket->setHero($this);
+        }
+
+        $this->ticket = $ticket;
 
         return $this;
     }
