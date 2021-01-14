@@ -18,11 +18,6 @@ class Ticket
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $resume;
@@ -48,21 +43,14 @@ class Ticket
      */
     private $hero;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $interventionSchedule;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getResume(): ?string
@@ -121,6 +109,18 @@ class Ticket
     public function setHero(Hero $hero): self
     {
         $this->hero = $hero;
+
+        return $this;
+    }
+
+    public function getInterventionSchedule(): ?\DateTimeInterface
+    {
+        return $this->interventionSchedule;
+    }
+
+    public function setInterventionSchedule(\DateTimeInterface $interventionSchedule): self
+    {
+        $this->interventionSchedule = $interventionSchedule;
 
         return $this;
     }

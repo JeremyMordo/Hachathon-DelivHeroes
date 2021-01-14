@@ -12,8 +12,7 @@ class SearchHeroType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('search', SearchType::class)
-        ;
+            ->add('search', SearchType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
