@@ -31,6 +31,11 @@ background-color: #323c81;
     }
 }
 
+.button:focus,.button:active {            /*the collapse creates an unwanted blue frame, it cancels the frame*/
+    outline: none !important;
+    box-shadow: none;
+}
+
 .punchline{
 
 z-index: 1;
