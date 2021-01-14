@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class TicketType extends AbstractType
@@ -22,16 +23,20 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('resume', TextareaType::class)
-            ->add('localisation', TextType::class)
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'group_by' => 'type',
-                'placeholder' => 'Choisir une catégorie'
-
-            ]);
+                'placeholder' => 'Choisir une catégorie',
+                'label' => 'Votre problème'
+                ])
+            ->add('localisation', TextType::class, [
+                'label' => 'Le lieu de l\'intervention'])
+            // ->add('time', ChoiceType::class, [
+            //     'choices' => [
+            //         'now' => new \DateTime('now')]])
+            ->add('resume', TextareaType::class,[
+                'label' => 'Commentaire à destination du héro']);
     }
 
     public function configureOptions(OptionsResolver $resolver)
