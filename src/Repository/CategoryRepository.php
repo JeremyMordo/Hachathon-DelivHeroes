@@ -19,6 +19,22 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+
+        /**
+     * @return Category[]
+     */
+    public function distinctType(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT DISTINCT c.type
+                        FROM App\Entity\Category c');
+
+        return $query->getResult();
+    }
+
+
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */

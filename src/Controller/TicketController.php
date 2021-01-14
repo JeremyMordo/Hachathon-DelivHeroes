@@ -2,40 +2,41 @@
 
 namespace App\Controller;
 
+use App\Entity\Ticket;
 use App\Entity\Category;
-use App\Form\RequestType;
+use App\Form\TicketType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
-class RequestController extends AbstractController
+class TicketController extends AbstractController
 {
 
     /**
-     * @Route("/HeroRequest", name="HeroRequest")
+     * @Route("/ticket", name="ticket")
      */
-    public function HeroRequest(Request $request, EntityManagerInterface $em)
+    public function ticket(Request $request, EntityManagerInterface $em)
     {
-        $category = new Category();
-        $form = $this->createForm(RequestType::class, $category);
+        $ticket = new Ticket();
+        $form = $this->createForm(TicketType::class, $ticket);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $category = $form->getData();
+            $ticket = $form->getData();
 
             // ... perform some action, such as saving the task to the database
             // for example, if Task is a Doctrine entity, save it!
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($category);
+            $entityManager->persist($ticket);
             $entityManager->flush();
 
             return $this->redirectToRoute('');
         }
 
         
-        return $this->render('request.html.twig', [
+        return $this->render('ticket.html.twig', [
             'form' => $form->createView(),
         ]);
 

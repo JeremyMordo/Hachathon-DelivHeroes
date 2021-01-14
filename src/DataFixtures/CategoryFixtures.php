@@ -11,8 +11,8 @@ class CategoryFixtures extends Fixture
 
     const CATEGORIES = [
 
-            'Vol' => [
-                'name' => 'Vol des bijoux de famille',
+            'Vol des bijoux de famille' => [
+                'type' => 'Vol',
                 'description' => 'C\'est casse-couille, mais avec un bon chirurgien et une bonne prothèse ça passe ! Par contre faut se grouiller là.',
                 'complexity' => '3',
                 'statRequired' => [
@@ -24,8 +24,8 @@ class CategoryFixtures extends Fixture
                         'combat' => '0',
                     ],
                 ],
-            'Vol' => [
-                'name' => 'Vol à main armé',
+            'Vol à main armé' => [
+                'type' => 'Vol',
                 'description' => 'On essaye de vous dérober quelque chose à l\aide d\'une arme contendante!',
                 'complexity' => '1',
                 'statRequired' => [
@@ -38,8 +38,8 @@ class CategoryFixtures extends Fixture
                     ],
                 ],
 
-            'Sauvetage' => [
-                'name' => 'Chat coincé dans un arbre',
+            'Chat coincé dans un arbre' => [
+                'type' => 'Sauvetage',
                 'description' => 'Votre chat s\'est encore fourré tout en haut de l\'arbre du jardin et vous ne supportez plus ses miaulements de damné ? 
                                     L\'opération peut-être longue dépendemment du bon vouloir de l\'animal',
                 'complexity' => '3',
@@ -52,8 +52,8 @@ class CategoryFixtures extends Fixture
                         'combat' => '0',
                     ],
                 ],
-            'Sauvetage' => [
-                'name' => 'Oups, j\'ai encore balancé bébé avec l\'eau du bain.',
+            'Oups, j\'ai encore balancé bébé avec l\'eau du bain.' => [
+                'type' => 'Sauvetage',
                 'description' => 'Opération ultra rapide, il s\'agît de récupérer un bébé avant la noyade et assurer les premiers secours en cas d\'hypothermie et/ou d\'inhalation de liquide.',
                 'complexity' => '2',
                 'statRequired' => [
@@ -74,13 +74,11 @@ class CategoryFixtures extends Fixture
         {
             
             $category = new Category();
-            
-            $category->setType($categoryType);
             $category->setName($categoryType);
+            $category->setType($categoryValues['type']);
             $category->setDescription($categoryValues['description']);
             $category->setComplexity($categoryValues['complexity']);
             $category->setStatRequired($categoryValues['statRequired']);
-
 
             $manager->persist($category);
         }
