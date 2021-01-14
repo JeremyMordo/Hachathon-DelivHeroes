@@ -1,42 +1,50 @@
 {% block header %}
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="/">DelivHeroes</a>
+        <a class="navbar-brand" href="/"><img src="{{ asset('build/images/logo.png') }}">DelivHeroes</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <div class="navbar-nav mr-auto">
 
-                <li class="nav-item profile">
+                <div class="nav-item profile">
                     {% if app.user %}
-                        <a class="nav-link" href="{{ path('logout') }}"> Se déconnecter</a>
+                        <button type="button" class="button hirebtn" data-toggle="modal" data-target="#connection">
+                            Réserve ton héro
+                        </button>
+                        <a href="{{ path('heroes_list') }}">
+                            <button type="button" class="button showbtn">
+                                Tes héros
+                            </button>
+                        </a>
+
                     {% else %}
                         <button type="button" class="button" data-toggle="modal" data-target="#connection">
-                            Connexion
+                            Accède à nos offre
                         </button>
                         <div class="modal fade" id="connection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered d-flex" style="max-width:20%;" role="document">
-                                <div class="modal-content row col-11 p-0 m-0">
+                                <div class="modal-content modal-connection row col-11 p-0 m-0">
                                     <div class="modal-body d-flex flex-column m-0 col-lg-12">
-                                        <h5 class="text-center" style="color:#F27E55; font-weight: bold"> Accèdez rapidement à votre espace </h5>
+                                        <h5 class="text-center" style=" font-weight: bold"> Connecte-toi </h5>
                                         {% include ('_formConnection.html.twig') %}
-                                        <a href="#" class="align-self-center pt-2" style="color:#F27E55; font-weight: bold"> Pas encore de compte ?</a>
-
+                                        <a href="{{ path('register') }}" class="align-self-center pt-2 text-black-50"> Pas encore de compte ?</a>
                                     </div>
                                 </div>
                                 <div class="close col-lg-1">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
                     {% endif %}
-                </li>
                 {%  if app.user %}
-                <li class="nav-item profile">
-                    <a class="nav-link" href="{{ path('profil')}} ">Mon profil</a>
-                </li>
+                    <div class="profil-info">
+                            <a class="nav-link" href="{{ path('profil')}} ">Mon profil</a>
+                            <a class="nav-link" href="{{ path('logout') }}"> Se déconnecter</a>
+                    </div>
+
                 {% endif %}
-            </ul>
+                </div>
+            </div>
         </div>
     </nav>
 {% endblock %}
