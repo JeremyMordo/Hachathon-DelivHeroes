@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * @Route("/heroes", name="heroes_")
@@ -18,8 +19,13 @@ class HeroController extends AbstractController
     /**
      * @Route("/", name="list")
      */
-    public function HeroesList(Request $request, HeroRepository $heroRepository): Response
+    public function HeroesList(Request $request, HeroRepository $heroRepository, AuthenticationUtils $authenticationUtils): Response
     {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
         $form = $this->createForm(SearchHeroType::class);
         $form->handleRequest($request);
 
@@ -35,6 +41,8 @@ class HeroController extends AbstractController
 
         return $this->render('heroes.html.twig', [
             'heroes' => $heroes,
+            'error' => $error,
+            'last_username' => $lastUsername,
             'form' => $form->createView(),
         ]);
     }

@@ -8,31 +8,34 @@
                     <img src="{{ hero.image }}" class="poster align-self-center">
                     <div class="name">{{ hero.name }}</div>
                     <div class="clickhere">
-                        <p>Pour en savoir plus</br></p>
-                        <section>
-                            <div class="modal_open button ">
-                                Cliquez-ici
-                            </div>
-                        </section>
-                        <div class="modal">
-                            <div class="modal_close main">
-                                <i class="fas fa-times"></i>
-                            </div>
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/51DILRGk9SL._AC_SX425_.jpg">
-                            <div class="copy">
-                                <div class="stats">
-                                    <p>Int : 100</p>
-                                    <p>Int : 100</p>
-                                    <p>Int : 100</p>
-                                    <p>Int : 100</p>
-                                    <p>Int : 100</p>				
+                        <p>Pour en savoir plus</br>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hero{{ hero.id }}">Cliquez-ici</button>
+                        <div class="modal fade" id="hero{{ hero.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                                <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+                                    <h1> {{ hero.name }}</h1>
+                                    <div class="modal-desc row">
+                                        <div class="image-poster col-6">
+                                            <img src="{{ hero.image }}" class="poster-modal">
+                                        </div>
+                                        <div class="stats-base-assoc row col-6">
+                                            <div class="stats col-6">
+                                                <h4>Statistiques</h4>
+                                                    {% for key, powerstats in hero.powerstats %}
+                                                        <div>{{key}} {{powerstats}}</div>
+                                                    {% endfor %}
+                                            </div>
+                                            <div class="base-assoc col-6">
+                                                <h5>Base d'opération</h5>
+                                                    <div>{{ hero.base }}</div>
+                                                <h5>Affiliation</h5>
+                                                    <div>{{ hero.groupAffiliation }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="base-team">
-                                    <p>base : ici</p>
-                                    <p>company : league</p>
-                                </div>
                             </div>
-                        <div class="modal_overlay"></div>
+                        </div></p>
                     </div>
                 </div>
             {% endfor %}
