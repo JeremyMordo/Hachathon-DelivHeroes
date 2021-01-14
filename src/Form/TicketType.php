@@ -29,7 +29,6 @@ class TicketType extends AbstractType
                 'class' => Category::class,
                 'query_builder' => $this->categoryRepository->distinctType(),
                 'choice_label' => 'type',
-                
             ]);
     }
 

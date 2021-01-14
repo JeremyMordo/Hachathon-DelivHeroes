@@ -29,7 +29,8 @@ class CategoryRepository extends ServiceEntityRepository
 
         $query = $entityManager->createQuery(
             'SELECT DISTINCT c.type
-                        FROM App\Entity\Category c');
+             FROM App\Entity\Category c');
+             
 
         return $query->getResult();
     }
