@@ -33,13 +33,13 @@ class Ticket
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity=category::class, inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="tickets")
      */
     private $category;
 
     /**
      * @ORM\OneToOne(targetEntity=Hero::class, inversedBy="ticket", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $hero;
 
@@ -106,7 +106,7 @@ class Ticket
         return $this->hero;
     }
 
-    public function setHero(Hero $hero): self
+    public function setHero(?Hero $hero): self
     {
         $this->hero = $hero;
 
