@@ -19,7 +19,7 @@ class CategoryFixtures extends Fixture
                 'statRequired' => [
                         'intelligence' => '50',
                         'strength' => '10',
-                        'speed' => '100',
+                        'speed' => '80',
                         'durability' => '10',
                         'power' => '20',
                         'combat' => '0',
@@ -27,7 +27,7 @@ class CategoryFixtures extends Fixture
                 ],
             'Vol à main armé' => [
                 'type' => 'Vol',
-                'description' => 'On essaye de vous dérober quelque chose à l\aide d\'une arme contendante!',
+                'description' => 'On essaye de vous dérober quelque chose à l\'aide d\'une arme contendante!',
                 'complexity' => '1',
                 'statRequired' => [
                         'intelligence' => '10',
