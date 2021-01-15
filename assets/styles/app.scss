@@ -351,3 +351,66 @@ padding-top: 30px;
     }
 }
 
+.us1{
+
+    z-index: 1;
+    height: 500px;
+    background: rgb(198,58,79);
+    background: linear-gradient(90deg, rgba(198,58,79,1) 0%, rgba(255,0,142,1) 100%);
+    clip-path: polygon(19% 0, 100% 0, 100% 100%, 37% 76%);
+    font-family: Bangers;
+    font-size: 50pt;
+    color: white;
+    overflow-wrap: wrap;
+    text-align: right;
+    align-content: center;
+    padding-right: 30px;
+    
+    }
+.us1img {
+
+padding-left: 600px;
+
+
+}
+
+    .us2{
+
+        z-index: 1;
+        height: 500px;
+        background: rgb(198,58,79);
+        background: linear-gradient(90deg, rgba(198,58,79,1) 0%, rgba(255,0,142,1) 100%);
+        clip-path: polygon(0 0, 74% 0, 59% 52%, 0 86%);
+        font-family: Bangers;
+        font-size: 45pt;
+        color: white;
+        overflow-wrap: wrap;
+        text-align: left;
+        align-content: top;
+        padding-left: 30px;
+        
+        
+        }
+
+        .us3{
+
+            z-index: 1;
+            height: 500px;
+            background: rgb(198,58,79);
+            background: linear-gradient(90deg, rgba(198,58,79,1) 0%, rgba(255,0,142,1) 100%);
+            clip-path: polygon(14% 0, 100% 0, 100% 91%, 35% 71%);
+            font-family: Bangers;
+            font-size: 50pt;
+            color: white;
+            overflow-wrap: wrap;
+            text-align: right;
+            align-content: top;
+            padding-right: 30px;
+            
+            }
+
+            .us3img {
+
+                padding-left: 600px;
+                width: 80%;
+            }
