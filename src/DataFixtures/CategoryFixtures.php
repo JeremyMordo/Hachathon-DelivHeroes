@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
+use App\Entity\Hero;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -157,6 +158,22 @@ class CategoryFixtures extends Fixture
                     ],
         ];
 
+        const HERO = [
+            'Yavulk' => [
+                'powerstats' => [
+                    'intelligence' => '100',
+                    'strength' => '100',
+                    'speed' => '100',
+                    'durability' => '100',
+                    'power' => '100',
+                    'combat' => '100',
+                ],
+                'alignment' => 'good',
+                'image' => 'https://ibb.co/S7bd8m0',
+                'base' => 'Leroy Merlin',
+                'group_affiliation' => 'Wild Code School de Strasbourg',
+            ]
+        ];
 
     public function load(ObjectManager $manager)
     {
@@ -171,6 +188,19 @@ class CategoryFixtures extends Fixture
             $category->setStatRequired($categoryValues['statRequired']);
 
             $manager->persist($category);
+        }
+
+        foreach (self::HERO as $heroType => $heroValues)
+        {
+            $hero = new Hero();
+            $hero->setName($heroType);
+            $hero->setPowerstats($heroValues['powerstats']);
+            $hero->setAlignment($heroValues['alignment']);
+            $hero->setImage($heroValues['image']);
+            $hero->setBase($heroValues['base']);
+            $hero->setGroupAffiliation($heroValues['group_affiliation']);
+
+            $manager->persist($hero);
         }
 
         $manager->flush();
