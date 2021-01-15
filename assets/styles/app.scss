@@ -104,6 +104,18 @@ padding-top: 30px;
             font-family: Bangers;
             font-size: 5em;
         }
+        .form-group{
+            width:500px;
+            margin: auto;
+            margin-bottom: 5em;
+            .label {
+                display: none;
+                color : red;
+            }
+        }
+        .search-text {
+            margin-top: 5em;
+        }
     }
 
     .lotcards {

@@ -65,7 +65,7 @@ class CategoryFixtures extends Fixture
                     ],
                 ],
                 'Prise d\'otages dans la mairie de Plobsheim' => [
-                    'type' => 'Prise d\'otage',
+                    'type' => 'Prise d\'otages',
                     'description' => 'Les terroristes sont armés et cagoulés, ils sont très nerveux et demande la libération des singes du parc de l\'Orangerie',
                     'complexity' => '3',
                     'statRequired' => [
