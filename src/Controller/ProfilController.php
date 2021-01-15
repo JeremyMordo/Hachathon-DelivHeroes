@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ticket;
 use App\Entity\User;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Form\RegistrationFormType;
+use App\Repository\HeroRepository;
+use App\Repository\TicketRepository;
 
 class ProfilController extends AbstractController
 {
@@ -75,7 +78,7 @@ class ProfilController extends AbstractController
     /**
      * @Route("/profil", name="profil")
      */
-    public function profil(AuthenticationUtils $authenticationUtils): Response
+    public function profil(AuthenticationUtils $authenticationUtils, TicketRepository $ticketRepository, HeroRepository $heroRepository): Response
 {
     $user = $this->getUser();
     // get the login error if there is one
@@ -83,11 +86,15 @@ class ProfilController extends AbstractController
     // last username entered by the user
     $lastUsername = $authenticationUtils->getLastUsername();
 
+    $tickets = $ticketRepository->findAll();
+    $hero = $heroRepository->findBy(["name" => "Yavulk"]);
+
     return $this->render('profil.html.twig', [
         'user' => $user,
         'last_username' => $lastUsername,
         'error' => $error,
-
+        'tickets' => $tickets,
+        'hero' => $hero,
     ]);
 }
 }
