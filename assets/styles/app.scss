@@ -81,7 +81,7 @@ padding-top: 30px;
 
 }
 .nav-item {
-    width: 80vw;
+    width: 70vw;
 }
 
 .profil-info {
@@ -297,6 +297,57 @@ padding-top: 30px;
         width:200px;
         background: #F8FAF5;
         margin: auto;
+    }
+}
+
+//Result page
+.result-page {
+    min-width:80%;
+    h1 {
+        font-family: Bangers;
+        margin-top: 2em;
+        color:rgb(198,58,79);
+        font-size: 4em;
+    }
+    h2 {
+        font-family: Bangers;
+        margin-top: 1em;
+        color:#323c81;
+        font-size: 3em;
+        text-align: center;
+    }
+    .modal-heroes {
+        border-radius: 1rem;
+        font-size: 30px;
+        background-color: #0b182e;
+        h1 {
+            margin-top: 0;
+            color:#FFC300;
+            text-align: center;
+        }
+    }
+    .modal img{
+        filter: grayscale(0%);
+    }
+    .modal-heroes:hover {
+        box-shadow: 2px 2px 2px black;
+    }
+    .stats-base-assoc{
+        font-size:0.8em;
+        h4, h5 {
+            font-size: 1.2em;
+            text-decoration: underline;
+            padding-top:1em;
+        }
+    }
+    .btn-select-hero {
+        background-color: #58eb34;
+        font-size: 2em;
+        font-family: Bangers;
+        color:white;
+        padding: 0 0.5em 0 0.5em;
+        box-shadow: 2px 2px 2px white;
+        margin-top: 0.5em;
     }
 }
 

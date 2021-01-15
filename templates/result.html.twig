@@ -4,7 +4,7 @@
     <div class="container result-page">
         <h1>Notre séléction personnalisée :</h1>
         <div class="row">
-            <div class="col-8">
+            <div class="col-8 mt-5">
                 <h4>Problème :<br> {{category.name}}</h4>
                 <p>{{category.description}}</p>
             </div>
@@ -26,8 +26,7 @@
                     <img src="{{ hero.image }}" class="poster align-self-center">
                     <div class="name">{{ hero.name }}</div>
                     <div class="clickhere">
-                        <p>Pour en savoir plus</br>
-                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Cliquez-ici</button>
+                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Réserver</button>
                         <div class="modal fade" id="hero{{ hero.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                                 <div class="modal-content modal-heroes py-md-5 px-md-4 p-sm-3 p-4">
@@ -68,8 +67,7 @@
                     <img src="{{ hero.image }}" class="poster align-self-center">
                     <div class="name">{{ hero.name }}</div>
                     <div class="clickhere">
-                        <p>Pour en savoir plus</br>
-                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Cliquez-ici</button>
+                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Réserver</button>
                         <div class="modal fade" id="hero{{ hero.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                                 <div class="modal-content modal-heroes py-md-5 px-md-4 p-sm-3 p-4">
@@ -110,8 +108,7 @@
                     <img src="{{ hero.image }}" class="poster align-self-center">
                     <div class="name">{{ hero.name }}</div>
                     <div class="clickhere">
-                        <p>Pour en savoir plus</br>
-                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Cliquez-ici</button>
+                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Réserver</button>
                         <div class="modal fade" id="hero{{ hero.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                                 <div class="modal-content modal-heroes py-md-5 px-md-4 p-sm-3 p-4">
@@ -136,7 +133,7 @@
                                         </div>
                                     </div>
                                     <div class="row d-flex justify-content-center">
-                                        <a class="btn btn-danger btn-select-hero " href="{{path('add_ticket', {'categoryId' : category.id, 'heroId' : hero.id}) }}">CHOISIS MOI !</a>
+                                        <a class="btn btn-danger btn-select-hero" href="{{path('add_ticket', {'categoryId' : category.id, 'heroId' : hero.id}) }}">CHOISIS MOI !</a>
                                     </div>
                                 </div>
                             </div>
