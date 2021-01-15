@@ -169,8 +169,22 @@ class CategoryFixtures extends Fixture
                     'combat' => '100',
                 ],
                 'alignment' => 'good',
-                'image' => 'https://ibb.co/S7bd8m0',
+                'image' => 'https://i.ibb.co/JFVy4p2/image-1.png',
                 'base' => 'Leroy Merlin',
+                'group_affiliation' => 'Wild Code School de Strasbourg',
+            ],
+            'Iron-Gil' => [
+                'powerstats' => [
+                    'intelligence' => '100',
+                    'strength' => '100',
+                    'speed' => '100',
+                    'durability' => '100',
+                    'power' => '100',
+                    'combat' => '100',
+                ],
+                'alignment' => 'good',
+                'image' => 'https://i.ibb.co/nzw8btn/Iron-Gil.jpg',
+                'base' => 'Starck Industry',
                 'group_affiliation' => 'Wild Code School de Strasbourg',
             ]
         ];
