@@ -1,13 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}request{% endblock %}
+{% block title %}Votre demande | DelivHeroes{% endblock %}
+
 
 {% block body %}
     <div class="container form-ticket">
         {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_widget(form) }}
-            <input type='submit' class="btn-primary"  value="Réserve ton héro">
+            {{ form_errors(form) }}
+                {{ form_label(form.localisation) }}
+                    <p onclick="getLocation()" class="btn btn-primary"> Géolocalisez-moi !</p>
+                    <p class="small" id="demo"></p>
+                        {{ form_widget(form.localisation, {'id' : 'my_id' }) }}
+            {{ form_widget(form) }}
+                <input type='submit' class="btn-primary"  value="Réserve ton héro">
         {{ form_end(form) }}
     </div>
+
+
+<script type="text/javascript" >
+var x = document.getElementById("demo");
+var y = document.getElementById("my_id");
+
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else { 
+    x.innerHTML = "Oups! Veuillez changer de navigateur.";
+  }
+}
+
+function showPosition(position) {
+  y.innerHTML = "Latitude: " + position.coords.latitude + 
+  "  Longitude: " + position.coords.longitude;
+  y.value = "Latitude: " + position.coords.latitude + 
+  "  Longitude: " + position.coords.longitude;
+}
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      x.innerHTML = "C'est difficile de vous trouver si vous n'acceptez pas."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML = "On a pas réussi à vous trouver! Veuillez rentrer votre adresse."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML = "On a pas réussi à vous trouver! Veuillez rentrer votre adresse."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML = "On a pas réussi à vous trouver ! Veuillez rentrer votre adresse."
+      break;
+  }
+}
+</script>
 {% endblock %}
