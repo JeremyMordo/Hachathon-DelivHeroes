@@ -3,72 +3,7 @@
 
 {% block title %}Home{% endblock %}
 {% block javascripts %}
-<script src="{{ asset('build/app.js') }}"></script>
-    <script type="text/javascript">
-    const { gsap } = require("gsap/dist/gsap");
-    var currentImg = undefined,
-    currentImgProps = {x:0, y:0},
-    isZooming = false,
-    column = -1,
-    mouse = {x:0, y:0},
-    delayedPlay;
 
-for (var i=0; i<12; i++){
-    
-    if (i%12==0) column++;
-
-    var b = document.createElement('div');    
-    $('.mainBoxes').append(b);
-    
-    gsap.set(b, {
-      attr:{ id:'b'+i, class:'photoBox pb-col'+column },
-      backgroundImage:'url(https://assets.codepen.io/721952/'+i+'.jpg)',
-      backgroundSize:'cover',
-      backgroundPosition:'center',
-      overflow:'hidden',
-      x:[60,280,500][column],
-      width:400,
-      height:640,
-      borderRadius:20,
-      scale:0.5,
-      zIndex:1
-    });
-
-    b.tl = gsap.timeline({paused:true, repeat:-1})
-      .fromTo(b, {x:[-575,800,800][column], rotation:-0.05}, {duration:[40,35,26][column], x:[1000,-575,-575][column], rotation:0.05, ease:'none'})
-      .progress(i%7/7)
-}
-
-
-function pauseBoxes(b){
-  var classStr = 'pb-col0';
-  if ($(b).hasClass('pb-col1')) classStr = 'pb-col1';
-  if ($(b).hasClass('pb-col2')) classStr = 'pb-col2';
-  for (var i=0; i<$('.mainBoxes').children().length; i++) {
-    var b = $('.mainBoxes').children()[i];
-    if ($(b).hasClass(classStr)) gsap.to(b.tl, {timeScale:0, ease:'sine'});    
-  }
-}
-
-function playBoxes(){ 
-  for (var i=0; i<$('.mainBoxes').children().length; i++) { 
-    var tl = $('.mainBoxes').children()[i].tl;
-    tl.play();
-    gsap.to(tl, {duration:0.4, timeScale:1, ease:'sine.in', overwrite:true});
-  }
-}
-
-
-window.onload = function(){
-
-  var _tl = gsap.timeline({onStart:playBoxes})
-      .set('.main',        {perspective:800})
-      .set('.mainBoxes',   {left:'75%', xPercent:-50, width:1200, rotationX:14, rotationY:-15, rotationZ:10})
-      .set('.mainClose',   {autoAlpha:0, width:60, height:60, left:-30, top:-31, pointerEvents:'none'})
-      .fromTo('.main',     {autoAlpha:0},{duration:0.6, ease:'power2.inOut', autoAlpha:1}, 0.2)
-   
-}
-    </script>
 
 {% endblock %}
 {% block body %}
@@ -76,18 +11,21 @@ window.onload = function(){
     <div class="punchline">
         <p class="punchline">Pas de place pour l'imprévu <br>avec Delivheroes <br>vos soucis s'envole</p>
     </div>
-        <div class="mainBoxes fs"></div>
+    <img class="us1img" src="{{ asset('build/images/us1.png') }}">        
+    <div class="us1">    
+        <p class="us1"> Vous avez un soucis a regler? <br> Un vilain a botter?<br> Rdv sur notre site!
+    </div>
+      <img class="us2img" src="{{ asset('build/images/us2.png') }}">
+    <div class="us2">
+        <p class="us2">Inscrivez-vous et remplissez le formulaire, <br> nous vous proposerons les heros <br> les plus adaptés a votre situation <br> et a votre budget!
+    </div>  
+    <img class="us3img" src="{{ asset('build/images/yavulk.png') }}">
+    <div  class="us3">
+        <img class="us3img" src="">
+        <p class="us3">Le hero choisi est envoyé directement chez vous!<br>
     </div>  
 </div>
 
-    {% for hero in heroes %}
-        {# {{hero.name}} #}
-        <img src="{{hero.image}}" alt="{{ hero.name }}">
-        {# {% for key, powerstats in hero.powerstats %}
 
-            <li> {{key}} {{powerstats}}</li>#}
-        {# {% endfor %} #}
-    {% endfor %}
-   
     
 {% endblock %}
