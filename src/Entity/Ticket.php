@@ -18,11 +18,6 @@ class Ticket
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $resume;
@@ -38,30 +33,24 @@ class Ticket
     private $status;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="tickets")
+     */
+    private $category;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Hero::class, inversedBy="ticket", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $hero;
 
     /**
-     * @ORM\ManyToOne(targetEntity=category::class, inversedBy="tickets")
+     * @ORM\Column(type="datetime")
      */
-    private $category;
+    private $interventionSchedule;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getResume(): ?string
@@ -100,18 +89,6 @@ class Ticket
         return $this;
     }
 
-    public function getHero(): ?int
-    {
-        return $this->hero;
-    }
-
-    public function setHero(int $hero): self
-    {
-        $this->hero = $hero;
-
-        return $this;
-    }
-
     public function getCategory(): ?category
     {
         return $this->category;
@@ -120,6 +97,30 @@ class Ticket
     public function setCategory(?category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getHero(): ?Hero
+    {
+        return $this->hero;
+    }
+
+    public function setHero(?Hero $hero): self
+    {
+        $this->hero = $hero;
+
+        return $this;
+    }
+
+    public function getInterventionSchedule(): ?\DateTimeInterface
+    {
+        return $this->interventionSchedule;
+    }
+
+    public function setInterventionSchedule(\DateTimeInterface $interventionSchedule): self
+    {
+        $this->interventionSchedule = $interventionSchedule;
 
         return $this;
     }

@@ -4,8 +4,26 @@
 
 {% block body %}
     <div class="container-fluid">
-        <div class="container">
-            <h1> Bonjour {{ user.firstname }} {{ user.lastname }}</h1>
+        <div class="container new-user">
+            <h1> Bonjour {{ user.firstname }} {{ user.lastname }}<br></h1>
+            {% if tickets == null %}
+                <h2>Pour l'instant nous n'avons pas de commande sur votre profil </h2>
+            {% else %}
+            <div class="row center">
+                {% for ticket in tickets %}
+                    <div class="card" style="width: 18rem; margin: 2em; background-color: #323c81;
+box-shadow: 0px 10px 5px #0f1f3d;">
+                    {# <img class="card-img-top" src="{{hero.image}}" alt="Card image cap"> #}
+                        <div class="card-body ">
+                            <h4 style="text-decoration: underline; color: lightblue" class="card-title">{{ticket.id}} : {{ticket.category.name}}</h4>
+                            <h6 style="text-decoration: underline; color: lightblue">Note pour le héro :</h6>
+                            <p class="card-text" style="color: white">{{ticket.resume}}</p>
+                            <small style="color: lightblue">Lieu : <br> {{ticket.localisation}}</small>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

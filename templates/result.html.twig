@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+{% block title %}La liste des Heros{% endblock %}
+{% block body %}
+    <div class="container result-page">
+        <h1>Notre séléction personnalisée :</h1>
+        <div class="row">
+            <div class="col-8 mt-5">
+                <h4>Problème :<br> {{category.name}}</h4>
+                <p>{{category.description}}</p>
+            </div>
+            <div class="col">
+                <h4>Statistiques attendues :</h4>
+                            {# </div>
+            <div class="col"> #}
+                    <ul>
+                    {% for key, statRequireds in category.statRequired %}
+                        <li class="small">{{key}} {{statRequireds}}</li>
+                    {% endfor %}
+                    </ul>
+            </div>
+        </div>
+        <h2>Heros Premium : 1000$</h2>
+        <div class="lotcards">
+            {% for hero in nineheroes|slice(0,3) %}
+                <div class="profile-card-2">
+                    <img src="{{ hero.image }}" class="poster align-self-center">
+                    <div class="name">{{ hero.name }}</div>
+                    <div class="clickhere">
+                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Réserver</button>
+                        <div class="modal fade" id="hero{{ hero.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                                <div class="modal-content modal-heroes py-md-5 px-md-4 p-sm-3 p-4">
+                                    <h1> {{ hero.name }}</h1>
+                                    <div class="modal-desc row">
+                                        <div class="image-poster col-6">
+                                            <img src="{{ hero.image }}" class="poster-modal">
+                                        </div>
+                                        <div class="stats-base-assoc row col-6">
+                                            <div class="stats col-6">
+                                                <h4>Statistiques</h4>
+                                                    {% for key, powerstats in hero.powerstats %}
+                                                        <div>{{key}} {{powerstats}}</div>
+                                                    {% endfor %}
+                                            </div>
+                                            <div class="base-assoc col-6">
+                                                <h5>Base d'opération</h5>
+                                                <div>{{ hero.base }}</div>
+                                                    <h5>Affiliation</h5>
+                                                <div>{{ hero.groupAffiliation }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex justify-content-center">
+                                        <a class="btn btn-danger btn-select-hero" href="{{path('add_ticket', {'categoryId' : category.id, 'heroId' : hero.id}) }}">CHOISIS MOI !</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <h2>Heros Medium : 500$</h2>
+        <div class="lotcards">
+            {% for hero in nineheroes|slice(3,3) %}
+                <div class="profile-card-2">
+                    <img src="{{ hero.image }}" class="poster align-self-center">
+                    <div class="name">{{ hero.name }}</div>
+                    <div class="clickhere">
+                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Réserver</button>
+                        <div class="modal fade" id="hero{{ hero.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                                <div class="modal-content modal-heroes py-md-5 px-md-4 p-sm-3 p-4">
+                                    <h1> {{ hero.name }}</h1>
+                                    <div class="modal-desc row">
+                                        <div class="image-poster col-6">
+                                            <img src="{{ hero.image }}" class="poster-modal">
+                                        </div>
+                                        <div class="stats-base-assoc row col-6">
+                                            <div class="stats col-6">
+                                                <h4>Statistiques</h4>
+                                                    {% for key, powerstats in hero.powerstats %}
+                                                        <div>{{key}} {{powerstats}}</div>
+                                                    {% endfor %}
+                                            </div>
+                                            <div class="base-assoc col-6">
+                                                <h5>Base d'opération</h5>
+                                                    <div>{{ hero.base }}</div>
+                                                <h5>Affiliation</h5>
+                                                    <div>{{ hero.groupAffiliation }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex justify-content-center">
+                                        <a class="btn btn-danger btn-select-hero " href="{{path('add_ticket', {'categoryId' : category.id, 'heroId' : hero.id}) }}">CHOISIS MOI !</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <h2>Heros Low Cost : 200$</h2>
+        <div class="lotcards">
+            {% for hero in nineheroes|slice(6,3) %}
+                <div class="profile-card-2">
+                    <img src="{{ hero.image }}" class="poster align-self-center">
+                    <div class="name">{{ hero.name }}</div>
+                    <div class="clickhere">
+                        <button type="button" class="btn btn-heroes" data-toggle="modal" data-target="#hero{{ hero.id }}">Réserver</button>
+                        <div class="modal fade" id="hero{{ hero.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                                <div class="modal-content modal-heroes py-md-5 px-md-4 p-sm-3 p-4">
+                                    <h1> {{ hero.name }}</h1>
+                                    <div class="modal-desc row">
+                                        <div class="image-poster col-6">
+                                            <img src="{{ hero.image }}" class="poster-modal">
+                                        </div>
+                                        <div class="stats-base-assoc row col-6">
+                                            <div class="stats col-6">
+                                                <h4>Statistiques</h4>
+                                                    {% for key, powerstats in hero.powerstats %}
+                                                        <div>{{key}} {{powerstats}}</div>
+                                                    {% endfor %}
+                                            </div>
+                                            <div class="base-assoc col-6">
+                                                <h5>Base d'opération</h5>
+                                                    <div>{{ hero.base }}</div>
+                                                <h5>Affiliation</h5>
+                                                    <div>{{ hero.groupAffiliation }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex justify-content-center">
+                                        <a class="btn btn-danger btn-select-hero" href="{{path('add_ticket', {'categoryId' : category.id, 'heroId' : hero.id}) }}">CHOISIS MOI !</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

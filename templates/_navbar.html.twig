@@ -7,18 +7,20 @@
 
                 <div class="nav-item profile">
                     {% if app.user %}
+                        <a href="{{ path('ticket') }}">
                         <button type="button" class="button hirebtn" data-toggle="modal" data-target="#connection">
-                            Hire your Hero
+                            Réserve un héro
                         </button>
+                        </a>
                         <a href="{{ path('heroes_list') }}">
                             <button type="button" class="button showbtn">
-                                Our Heroes
+                                Nos héros
                             </button>
                         </a>
 
                     {% else %}
                         <button type="button" class="button" data-toggle="modal" data-target="#connection">
-                            Connexion
+                            Accède à nos offres
                         </button>
                         <div class="modal fade" id="connection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered d-flex" style="max-width:20%;" role="document">
@@ -26,8 +28,7 @@
                                     <div class="modal-body d-flex flex-column m-0 col-lg-12">
                                         <h5 class="text-center" style=" font-weight: bold"> Connecte-toi </h5>
                                         {% include ('_formConnection.html.twig') %}
-                                        <a href="{{ path('register') }}" class="align-self-center pt-2"> Pas encore de compte ?</a>
-
+                                        <a href="{{ path('register') }}" class="align-self-center pt-2 text-black-50"> Pas encore de compte ?</a>
                                     </div>
                                 </div>
                                 <div class="close col-lg-1">
@@ -38,12 +39,11 @@
                         </div>
                     {% endif %}
                 {%  if app.user %}
-                <li class="nav-item profile">
-                    <a class="nav-link" href="{{ path('profil')}} ">Mon profil</a>
-                </li>
-                <li class="nav-item profile">
-                    <a class="nav-link" href="{{ path('logout') }}"> Se déconnecter</a>
-                </li>
+                    <div class="profil-info">
+                            <a class="nav-link" href="{{ path('profil')}} ">Mon profil</a>
+                            <a class="nav-link" href="{{ path('logout') }}"> Se déconnecter</a>
+                    </div>
+
                 {% endif %}
                 </div>
             </div>

@@ -3,7 +3,12 @@
 {% block body %}
     <div class="heroes-container">
         <h1>Notre team au complet</h1>
+
         <div class="form">
+            <div class="search-text">
+                <h4>Retrouvez vos héros préférés rapidement </h4>
+                <img src="{{ asset('build/images/icons-loupe.png') }}" />
+            </div>
             {{ form(form) }}
         </div>
         <div class="lotcards">

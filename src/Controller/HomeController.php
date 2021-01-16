@@ -43,5 +43,5 @@ class HomeController extends AbstractController
             'error' => $error,
             'heroes'=> $heroes
         ]);
-    }       
+    }
 }
