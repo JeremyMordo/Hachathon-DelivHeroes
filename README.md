@@ -1,2 +1,3 @@
-# WCS-Hachathon-SuperHero
-This is our repo for the second Hackathon at WCS
+## Présentation
+
+  **Hackathon** réalisé sur 48h dans une équipe de 4 personnes, sur un sujet de consommation d'API.
